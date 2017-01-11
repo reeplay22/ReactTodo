@@ -12,7 +12,8 @@ $(document).foundation();
 require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
-<h1>Boilerplate 3</h1>
+
+  <TodoApp />
   ,
 document.getElementById('app')
 );
