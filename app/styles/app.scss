@@ -1,0 +1,46 @@
+//foundation
+@import "base/foundation-settings";
+@import "foundation";
+@include foundation-everything;
+
+//variableis
+@import "base/variables";
+
+//components
+
+
+
+
+// $space-large:2.5rem;
+//
+//
+// .page-title {
+//   margin-top: $space-large;
+//   margin-bottom: $space-large;
+//   color: $title-color;
+// }
+//
+// .text-center {
+//   text-decoration-color: $text-color;
+// }
+//
+// .temp {
+//   font-size: 16pt;
+//   font-style: bold;
+//   color: cyan;
+// }
+// .tempMax {
+//   color:red;
+// }
+//
+// .tempMin {
+//   color:blue;
+// }
+//
+// input[type=search]{
+//   box-shadow: none;
+// }
+//
+// h1{
+//   color: red;
+// }
