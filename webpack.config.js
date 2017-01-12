@@ -24,7 +24,8 @@ module.exports = {
     root: __dirname,
     modulesDirectories: [
       'node_modules',
-      './app/components'
+      './app/components',
+      './app/api'
     ],
     alias: {
       applicationStyles: 'app/styles/app.scss'
@@ -42,10 +43,6 @@ module.exports = {
         test: /\.jsx?$/,
         exclude:/(node_modules|bower_components)/
       },
-      // {
-      //   loader: 'react-image-load',
-      //   test: /\.(jpe?g|png|gif|svg)$/i
-      // },
       {
         loader: 'url-loader',
         test:/\.(png|jpg)$/,
