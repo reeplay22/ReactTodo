@@ -37,6 +37,11 @@ export var todosReducer = (state=[], action) => {
                         completedAt: undefined
                      }
                 ];
+        case "ADD_TODOS":
+            return[
+                ...state,
+                ...action.todos
+            ]
         case "UPDATE_TODO":
            
             return state.map((todo) => {
