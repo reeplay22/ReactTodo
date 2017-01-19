@@ -40,6 +40,8 @@
     "node-uuid": "^1.4.7",
     "react-addons-test-utils": "^0.14.6",
     "react-image-load": "^1.1.2",
+    "react-redux": "^4.4.1",
+    "redux": "^3.3.1",
     "sass-loader": "^3.1.2",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",

@@ -25,9 +25,8 @@ describe('actions', () => {
     it('should generate show completed text action' , () => {
         var action = {
             type: 'UPDATE_SHOW_COMPLETED',
-            showCompleted: false
         };
-        var res = actions.updateShowCompleted(action.showCompleted);
+        var res = actions.updateShowCompleted();
 
         expect(res).toEqual(action);
     });

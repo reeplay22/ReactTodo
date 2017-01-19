@@ -5,10 +5,9 @@ export var setSearchText = (searchText) => {
     }
 };
 
-export var updateShowCompleted = (showCompleted) => {
+export var updateShowCompleted = () => {
     return{
         type:'UPDATE_SHOW_COMPLETED',
-        showCompleted
     }
 };
 

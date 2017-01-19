@@ -11,7 +11,7 @@ describe('Reducers', () => {
                 type: 'SET_SEARCH_TEXT',
                 searchText: 'dog'
             }
-            var res = reducers.searchTextReducer(df(''), df(action);
+            var res = reducers.searchTextReducer(df(''), df(action));
 
             expect(res).toEqual(action.searchText);
         });
@@ -27,5 +27,42 @@ describe('Reducers', () => {
 
             expect(res).toEqual(true);
         });
+    });
+
+    describe('todosReducer', () => {
+        it('should add todo', () => {
+            var action = {
+                type: 'ADD_TODO',
+                text: 'new thing to do'
+            }
+
+            var res = reducers.todosReducer(df([]), df(action));
+
+            expect(res.length).toEqual(1);
+            expect(res[0].text).toEqual(action.text);
+        });
+
+        it('should update todo', () => {
+            var todos = [{ 
+                        id: 1234,
+                        text: 'newTodo',
+                        completed: false,
+                        createdAt: 123412341,
+                        completedAt: undefined
+            }]
+
+            var action = {
+                type: "UPDATE_TODO",
+                id: 1234
+            }
+
+            var res = reducers.todosReducer(df(todos) ,df(action));
+            
+            expect(res[0].completed).toEqual(true);
+            expect(res[0].completedAt).toBeA('number');
+            
+        });
+
+
     });
 });
