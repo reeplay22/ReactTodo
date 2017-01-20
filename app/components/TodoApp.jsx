@@ -1,6 +1,6 @@
 var React = require('react');
 var moment = require('moment');
-var uuid = require('uuid');
+//var uuid = require('uuid');
 import TodoList from 'TodoList'
 import AddTodo from 'AddTodo'
 import TodoSearch from 'TodoSearch'
