@@ -78,17 +78,23 @@ describe('Reducers', () => {
                         completed: false,
                         createdAt: 123412341,
                         completedAt: undefined
-            }]
+            }];
+            var updates = {
+                completed: true,
+                completedAt: 123123
+            };
 
             var action = {
                 type: "UPDATE_TODO",
-                id: 1234
+                id: 1234,
+                updates
             }
 
             var res = reducers.todosReducer(df(todos) ,df(action));
             
-            expect(res[0].completed).toEqual(true);
-            expect(res[0].completedAt).toBeA('number');
+            expect(res[0].completed).toEqual(updates.completed);
+            expect(res[0].completedAt).toEqual(updates.completedAt);
+            expect(res[0].text).toEqual(todos[0].text);
             
         });
 

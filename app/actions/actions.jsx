@@ -50,12 +50,30 @@ export var addTodos = (todos) => {
     }
 }
 
-export var updateTodo = (id) => {
+export var updateTodo = (id, updates) => {
     return {
         type: 'UPDATE_TODO',
-        id
+        id,
+        updates
     }
 }
+
+export var startUpdateTodo = (id, completed) => {
+    return(dispatch, getState) => {
+        var todoRef = firebaseRef.child(`todos/${id}`);
+        var updates = {
+            completed,
+            completedAt: completed ? moment().unix() : null
+        };
+
+        console.log(getState());
+        //debugger;
+        return todoRef.update(updates).then(()=>{
+            dispatch(updateTodo(id, updates));
+        });
+    }
+} 
+
 export var removeTodo = (id) => {
     return{
         type:'REMOVE_TODO',
