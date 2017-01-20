@@ -11,15 +11,17 @@ var TodoApp = require('TodoApp');
 
 //import './../playground/index.js'
 
-store.subscribe(() => {
-  var state = store.getState();
+// store.subscribe(() => {
+//   var state = store.getState();
 
-  console.log('New state', state);
-  TodoAPI.setTodos(state.todos);
-});
+//   console.log('New state', state);
+//   TodoAPI.setTodos(state.todos);
+// });
 
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+// var initialTodos = TodoAPI.getTodos();
+// store.dispatch(actions.addTodos(initialTodos));
+
+store.dispatch(actions.startAddTodos());
 
 //Load foundation
 //require('style!css!foundation-sites/dist/css/foundation.min.css')

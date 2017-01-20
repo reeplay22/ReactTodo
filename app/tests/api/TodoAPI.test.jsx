@@ -11,51 +11,51 @@ describe('TodoAPI', () => {
     expect(TodoAPI).toExist();
   });
 
-  describe('setTodos',() => {
-    it('should set valid todos array', ()=> {
-      var todos = [{
-        id:4,
-        text: "testing",
-        completed: false
-      }];
+  // describe('setTodos',() => {
+  //   it('should set valid todos array', ()=> {
+  //     var todos = [{
+  //       id:4,
+  //       text: "testing",
+  //       completed: false
+  //     }];
 
-      TodoAPI.setTodos(todos);
+  //     TodoAPI.setTodos(todos);
 
-      var actualTodos = JSON.parse(localStorage.getItem('todos'));
-      expect(actualTodos).toEqual(todos);
+  //     var actualTodos = JSON.parse(localStorage.getItem('todos'));
+  //     expect(actualTodos).toEqual(todos);
 
-    });
+  //   });
 
-    it('should not set invalid data', () => {
-      var badTodos = {a: 'B'};
-      TodoAPI.setTodos(badTodos);
+  //   it('should not set invalid data', () => {
+  //     var badTodos = {a: 'B'};
+  //     TodoAPI.setTodos(badTodos);
 
-      expect(localStorage.getItem('todos')).toBe(null);
+  //     expect(localStorage.getItem('todos')).toBe(null);
 
-    })
-  });
+  //   })
+  // });
 
-  describe('getTodos', () => {
+  // describe('getTodos', () => {
 
-    it('should return empty array for bad localStorage data', () => {
-      var actualTodos = TodoAPI.getTodos();
+  //   it('should return empty array for bad localStorage data', () => {
+  //     var actualTodos = TodoAPI.getTodos();
 
-      expect(actualTodos).toEqual([]);
-    });
+  //     expect(actualTodos).toEqual([]);
+  //   });
 
-    it('should return todos if valid in localStorage exist', () => {
-      var todos = [{
-        id:4,
-        text: "testing",
-        completed: false
-      }];
+  //   it('should return todos if valid in localStorage exist', () => {
+  //     var todos = [{
+  //       id:4,
+  //       text: "testing",
+  //       completed: false
+  //     }];
 
-      localStorage.setItem('todos', JSON.stringify(todos));
+  //     localStorage.setItem('todos', JSON.stringify(todos));
 
-      var actualTodos = TodoAPI.getTodos();
-      expect(actualTodos).toEqual(todos);
-    });
-  });
+  //     var actualTodos = TodoAPI.getTodos();
+  //     expect(actualTodos).toEqual(todos);
+  //   });
+  // });
 
   describe('filterTodos', () => {
     var todos = [{

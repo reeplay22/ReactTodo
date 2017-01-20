@@ -50,6 +50,40 @@ export var addTodos = (todos) => {
     }
 }
 
+export var startAddTodos = () => {
+    return(dispatch, getState) => {
+        var todoRef = firebaseRef.child('todos');
+
+        // var todos = snapshot.val() || {};
+        // var parsedTodos = [];
+
+        // return todoRef.once('value').then((snapshot) => {
+        //     Object.keys(snapshot.val()).forEach((todoId) => {
+        //         parsedTodos.push({
+        //             id: todoId,
+        //             ...todos[todoId]
+        //         });
+        //     });
+            
+        //     dispatch(addTodos(displayTodos));          
+        // });
+
+        return todoRef.once('value').then((snapshot) => {
+     
+            var displayTodos = Object.keys(snapshot.val()).map((key) =>{
+                var todo = {
+                    id: key,
+                    ...snapshot.val()[key]
+                }
+                return todo;
+            });
+            
+            dispatch(addTodos(displayTodos));          
+        });
+     
+    }       
+}
+
 export var updateTodo = (id, updates) => {
     return {
         type: 'UPDATE_TODO',
@@ -65,9 +99,7 @@ export var startUpdateTodo = (id, completed) => {
             completed,
             completedAt: completed ? moment().unix() : null
         };
-
-        console.log(getState());
-        //debugger;
+        
         return todoRef.update(updates).then(()=>{
             dispatch(updateTodo(id, updates));
         });
