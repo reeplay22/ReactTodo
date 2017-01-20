@@ -12,7 +12,7 @@ export var AddTodo = React.createClass({
 
       if(newTodo.length > 0){
       this.refs.todoText.value = '';
-      dispatch(actions.addTodo(newTodo));
+      dispatch(actions.startAddTodo(newTodo));
     }else {
       this.refs.todoText.focus();
     }
@@ -22,12 +22,7 @@ export var AddTodo = React.createClass({
     var {id, text, dispatch} = this.props;
     return (
       <div className="container__footer">
-        <form onSubmit={this.onSubmit
-         // () => {       
-          // dispatch(actions.addTodo(this.refs.todoText.value));
-          // this.refs.todoText.value = '';
-       // }
-      }>
+        <form onSubmit={this.onSubmit}>
           <input type="text" ref="todoText" placeholder="what do you have to do?"/>
           <button className="button expanded">Add Todo</button>
         </form>

@@ -9,6 +9,7 @@ var store = require('configureStore').configure();
 var TodoAPI = require('TodoAPI');
 var TodoApp = require('TodoApp');
 
+//import './../playground/index.js'
 
 store.subscribe(() => {
   var state = store.getState();
