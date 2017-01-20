@@ -69,8 +69,9 @@ export var startAddTodos = () => {
         // });
 
         return todoRef.once('value').then((snapshot) => {
-     
-            var displayTodos = Object.keys(snapshot.val()).map((key) =>{
+
+            var todos = snapshot.val() || {};
+            var displayTodos = Object.keys(todos).map((key) =>{
                 var todo = {
                     id: key,
                     ...snapshot.val()[key]
