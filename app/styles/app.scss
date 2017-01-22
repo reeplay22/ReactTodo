@@ -7,15 +7,15 @@
 @import "base/variables";
 
 //components
+@import "components/container";
+@import "components/callout-auth";
+@import "components/page-actions";
 @import "components/page-title";
 @import "components/todo";
-@import "components/container";
 
 
 // $space-large:2.5rem;
 //
-//
-// .page-title {
 //   margin-top: $space-large;
 //   margin-bottom: $space-large;
 //   color: $title-color;
