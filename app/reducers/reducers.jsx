@@ -10,10 +10,10 @@ export var authReducer = (state={}, action) => {
         case "LOGOUT":
             return {};
 
-        case "SAVE_USER":
-            return {
-                user: action.user
-            }
+        // case "SAVE_USER":
+        //     return {
+        //         user: action.user
+        //     }
 
         default:
             return state;
