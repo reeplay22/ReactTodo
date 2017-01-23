@@ -6,7 +6,7 @@ var {hashHistory} = require('react-router');
 var actions = require ('actions');
 var store = require('configureStore').configure();
 import firebase from 'app/firebase/';
-import Router from 'app/router/'
+import Router from 'app/router/';
 
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {  
