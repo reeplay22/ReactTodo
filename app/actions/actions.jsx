@@ -113,6 +113,12 @@ export var removeTodo = (id) => {
     }
 };
 
+export var login = (uid) => {
+    return {
+        type: 'LOGIN',
+        uid
+    }
+}
 export var startLogin = () => {
     return (dispatch, getState) => {
         return firebase.auth().signInWithPopup(githubProvider).then((result) => {
@@ -120,7 +126,14 @@ export var startLogin = () => {
         }, (error) => {
             console.log('auth failed', error);
         });
+
     };
+};
+
+export var logout = () => {
+    return {
+    type: "LOGOUT",
+    }
 };
 
 export var startLogout = () => {
@@ -128,5 +141,12 @@ export var startLogout = () => {
         return firebase.auth().signOut().then(() => {
             console.log("logged out");
         });
+    }
+}
+
+export var saveUser = (user) => {
+    return {
+        type: "SAVE_USER",
+        user
     }
 }

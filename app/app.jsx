@@ -9,9 +9,13 @@ import firebase from 'app/firebase/';
 import Router from 'app/router/'
 
 firebase.auth().onAuthStateChanged((user) => {
-  if(user){
+  if(user) {
+    
+    store.dispatch(actions.login(user.uid));
+    store.dispatch(actions.saveUser(user));
     hashHistory.push('/todos');
-  }else{
+  } else {
+    store.dispatch(actions.logout());
     hashHistory.push('/');
   }
 });

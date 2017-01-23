@@ -98,6 +98,31 @@ describe('Reducers', () => {
             
         });
 
+         describe('todosReducer', () => {
+             it('should store uid on login', () => {
+                 const action = {
+                     type:'LOGIN',
+                     uid: '123213'
+                 }
+                 const res = reducers.authReducer(undefined, df(action));
+
+                 expect(res).toEqual({uid: action.uid});
+             });
+              it('should store uid on login', () => {
+                 const action = {
+                     type:'LOGOUT',
+                 }
+
+                  const authData = {
+                     uid: '123213'
+                 }
+                 const res = reducers.authReducer(df(authData), df(action));
+
+                 expect(res).toEqual({});
+             });
+
+         });
+
 
     });
 });
