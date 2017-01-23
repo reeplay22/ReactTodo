@@ -2,10 +2,10 @@ import React from 'react';
 import * as Redux from 'react-redux';
 var moment = require('moment');
 
-import TodoList from 'TodoList'
-import AddTodo from 'AddTodo'
-import TodoSearch from 'TodoSearch'
-import Login from 'Login'
+import TodoList from 'TodoList';
+import AddTodo from 'AddTodo';
+import TodoSearch from 'TodoSearch';
+import Login from 'Login';
 import * as actions from 'actions';
 
 export var TodoApp = React.createClass({
