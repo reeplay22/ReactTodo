@@ -54,20 +54,6 @@ export var startAddTodos = () => {
         var uid = getState().auth.uid;
         var todoRef = firebaseRef.child(`users/${uid}/todos`);
 
-        // var todos = snapshot.val() || {};
-        // var parsedTodos = [];
-
-        // return todoRef.once('value').then((snapshot) => {
-        //     Object.keys(snapshot.val()).forEach((todoId) => {
-        //         parsedTodos.push({
-        //             id: todoId,
-        //             ...todos[todoId]
-        //         });
-        //     });
-            
-        //     dispatch(addTodos(displayTodos));          
-        // });
-
         return todoRef.once('value').then((snapshot) => {
 
             var todos = snapshot.val() || {};
@@ -94,7 +80,8 @@ export var updateTodo = (id, updates) => {
 }
 
 export var startUpdateTodo = (id, completed) => {
-    return(dispatch, getState) => {
+    return(dispatch, getState) => {    
+        var uid = getState().auth.uid;
         var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
         var updates = {
             completed,
@@ -120,6 +107,7 @@ export var login = (uid) => {
         uid
     }
 }
+
 export var startLogin = () => {
     return (dispatch, getState) => {
         return firebase.auth().signInWithPopup(githubProvider).then((result) => {

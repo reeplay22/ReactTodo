@@ -20,10 +20,10 @@ describe('Reducers', () => {
         it('should change the status of show completed', () => {
             var action = {
                 type: 'UPDATE_SHOW_COMPLETED',
-               
+
             }
 
-            var res = reducers.showCompletedReducer(df(false) , df(action));
+            var res = reducers.showCompletedReducer(df(false), df(action));
 
             expect(res).toEqual(true);
         });
@@ -34,8 +34,8 @@ describe('Reducers', () => {
             var action = {
                 type: 'ADD_TODO',
                 todo: {
-                    id:'3294802894',
-                    text:"some test shit",
+                    id: '3294802894',
+                    text: "some test shit",
                     completed: false,
                     createdAt: 123123213
                 }
@@ -50,20 +50,20 @@ describe('Reducers', () => {
         it('should add initial todos', () => {
             var action = {
                 type: 'ADD_TODOS',
-                todos:[{
-                            id:1,
-                            text:'do something',
-                            completed: false,
-                            completedAt: undefined,
-                            createdAt: 300
-                        },{
-                            id:2,
-                            text:"something else",
-                            completed: false,
-                            completedAt: undefined,
-                            createdAt: 300
-                        }]
-                    }
+                todos: [{
+                    id: 1,
+                    text: 'do something',
+                    completed: false,
+                    completedAt: undefined,
+                    createdAt: 300
+                }, {
+                    id: 2,
+                    text: "something else",
+                    completed: false,
+                    completedAt: undefined,
+                    createdAt: 300
+                }]
+            }
 
             var res = reducers.todosReducer(df([]), df(action));
 
@@ -71,13 +71,40 @@ describe('Reducers', () => {
             expect(res[0]).toEqual(action.todos[0]);
         });
 
+        it('should clear todos on logout', () => {
+            var todos = {
+                type: 'ADD_TODOS',
+                todos: [{
+                    id: 1,
+                    text: 'do something',
+                    completed: false,
+                    completedAt: undefined,
+                    createdAt: 300
+                }, {
+                    id: 2,
+                    text: "something else",
+                    completed: false,
+                    completedAt: undefined,
+                    createdAt: 300
+                }]
+            }
+
+            var action = {
+                type: "LOGOUT"
+            };
+
+            var res = reducers.todosReducer(df([todos]), df(action));
+
+            expect(res.length).toEqual(0);
+            
+        });
         it('should update todo', () => {
-            var todos = [{ 
-                        id: 1234,
-                        text: 'newTodo',
-                        completed: false,
-                        createdAt: 123412341,
-                        completedAt: undefined
+            var todos = [{
+                id: 1234,
+                text: 'newTodo',
+                completed: false,
+                createdAt: 123412341,
+                completedAt: undefined
             }];
             var updates = {
                 completed: true,
@@ -90,38 +117,38 @@ describe('Reducers', () => {
                 updates
             }
 
-            var res = reducers.todosReducer(df(todos) ,df(action));
-            
+            var res = reducers.todosReducer(df(todos), df(action));
+
             expect(res[0].completed).toEqual(updates.completed);
             expect(res[0].completedAt).toEqual(updates.completedAt);
             expect(res[0].text).toEqual(todos[0].text);
-            
+
         });
 
-         describe('todosReducer', () => {
-             it('should store uid on login', () => {
-                 const action = {
-                     type:'LOGIN',
-                     uid: '123213'
-                 }
-                 const res = reducers.authReducer(undefined, df(action));
+        describe('todosReducer', () => {
+            it('should store uid on login', () => {
+                const action = {
+                    type: 'LOGIN',
+                    uid: '123213'
+                }
+                const res = reducers.authReducer(undefined, df(action));
 
-                 expect(res).toEqual({uid: action.uid});
-             });
-              it('should store uid on login', () => {
-                 const action = {
-                     type:'LOGOUT',
-                 }
+                expect(res).toEqual({ uid: action.uid });
+            });
+            it('should store uid on login', () => {
+                const action = {
+                    type: 'LOGOUT',
+                }
 
-                  const authData = {
-                     uid: '123213'
-                 }
-                 const res = reducers.authReducer(df(authData), df(action));
+                const authData = {
+                    uid: '123213'
+                }
+                const res = reducers.authReducer(df(authData), df(action));
 
-                 expect(res).toEqual({});
-             });
+                expect(res).toEqual({});
+            });
 
-         });
+        });
 
 
     });
