@@ -32,7 +32,7 @@ module.exports = {
 
     filterTodos = filterTodos.filter((todo) => {
       var nextText = todo.text.toLowerCase();
-      return searchText.length === 0 || nextText.indexOf(searchText) > -1;
+      return searchText.length === 0 || nextText.indexOf(searchText.toLowerCase()) > -1;
     });
 
     filterTodos.sort((a,b) => {

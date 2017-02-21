@@ -57,7 +57,8 @@ export var todosReducer = (state=[], action) => {
         case "UPDATE_TODO":        
             return state.map((todo) => {
                      if(todo.id === action.id) {
-                        var nextCompleted = !todo.completed; 
+                        //var nextCompleted = !todo.completed; 
+                        //action.text = todo.text;
                         return {
                             ...todo,
                             ...action.updates
@@ -66,6 +67,10 @@ export var todosReducer = (state=[], action) => {
                          return todo;
                      }
             });
+            case "EDIT_TODO":        
+            return [
+                ...state,
+                action.text == todo.text]
                  
         case "REMOVE_TODO":
             return state.filter((todo) => todo.id !== action.id);
