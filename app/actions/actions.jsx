@@ -1,4 +1,4 @@
-import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
+import firebase, {firebaseRef, githubProvider, facebookProvider} from 'app/firebase/';
 import moment from 'moment';
 
 export var setSearchText = (searchText) => {
@@ -79,18 +79,39 @@ export var updateTodo = (id, updates) => {
     }
 }
 
-export var startUpdateTodo = (id, completed) => {
+export var startUpdateTodo = (id, updateIn) => {
     return(dispatch, getState) => {    
         var uid = getState().auth.uid;
         var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
-        var updates = {
-            completed,
-            completedAt: completed ? moment().unix() : null
-        };
+
+        //var todoObj;
+        return todoRef.once('value', (snapshot) => {
+            console.log(snapshot.val());
+            var todo = snapshot.val();
+            
+            console.log("todo Text: " + snapshot.val().text + "  vs. updateIn :" + updateIn.text );
+            console.log("todo completed: " + snapshot.val().completed + "  vs. updateIn :" + updateIn.completed);
+            
+                var updateOut = {          
+                    text: updateIn.text != null || ""  ? updateIn.text : snapshot.val().text,
+                    completed: updateIn.completed != snapshot.val().completed ? updateIn.completed : snapshot.val().completed ,
+                    completedAt: updateIn.completed ? moment().unix() : null
+                };
+
+            console.log(updateOut.completed + "///////"+ updateOut.completedAt);
+
+            return todoRef.update(updateOut).then(()=>{
+            dispatch(updateTodo(id, updateOut));
+                });
+            });
+
+
+        //todoRef.
         
-        return todoRef.update(updates).then(()=>{
-            dispatch(updateTodo(id, updates));
-        });
+        
+        // return todoRef.update(updateOut).then(()=>{
+        //     dispatch(updateTodo(id, updateOut));
+        // });
     }
 } 
 
@@ -118,6 +139,17 @@ export var startLogin = () => {
 
     };
 };
+
+// export var startFacebookLogin = () => {
+//     return (dispatch, getState) => {
+//         return firebase.auth().signInWithPopup(facebookProvider).then((result) => {
+//             console.log('auth worked', result);
+//         }, (error) => {
+//             console.log('auth failed', error);
+//         });
+
+//     };
+// };
 
 export var logout = () => {
     return {

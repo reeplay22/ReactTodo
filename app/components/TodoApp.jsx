@@ -8,22 +8,22 @@ import TodoSearch from 'TodoSearch';
 import Login from 'Login';
 import * as actions from 'actions';
 
-export var TodoApp = React.createClass({
+export class TodoApp extends React.Component {
 
   onLogout(e) {
     var {dispatch} = this.props;
     e.preventDefault();
 
     dispatch(actions.startLogout());
-  },
+  }
 //<!-- <div><p>{auth.user.displayName}</p><img url={auth.user.photoURL}/></div>  -->
-  render: function () {
+  render () {
     //var {auth} = this.state;
     return (
       <div>
           <div className="page-actions">
      
-          <a href="#" onClick={this.onLogout}>Log Out</a>
+          <a href="#" onClick={this.onLogout.bind(this)}>Log Out</a>
           </div>
         <h1 className="page-title">Todo App</h1>
         <div className="row">
@@ -40,6 +40,6 @@ export var TodoApp = React.createClass({
     )
   }
 
-});
+};
 
 export default Redux.connect()(TodoApp);
